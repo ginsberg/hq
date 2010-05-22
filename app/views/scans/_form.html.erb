@@ -1,0 +1,16 @@
+<% form_for @scan do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :main_path %><br />
+    <%= f.text_field :main_path %>
+  </p>
+  <p>
+    <%= f.label :thumb_path %><br />
+    <%= f.text_field :thumb_path %>
+  </p>
+  <p>
+    <%= f.label :asset_id %><br />
+    <%= f.text_field :asset_id %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

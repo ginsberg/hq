@@ -1,0 +1,13 @@
+one:
+  name: MyString
+  amount: 1
+  paydate: 2010-01-21
+  budget_id: 1
+  account_id: 1
+
+two:
+  name: MyString
+  amount: 1
+  paydate: 2010-01-21
+  budget_id: 1
+  account_id: 1

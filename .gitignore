@@ -1,0 +1,4 @@
+# Will exclude all .log files
+*.log
+public/system/scans/*
+public/images/assets/*

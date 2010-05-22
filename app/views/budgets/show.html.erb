@@ -1,0 +1,148 @@
+<% title "budget" %>
+
+<% content_for :breadcrumb do %>
+	<%= link_to "Periods", periods_path, :title => "List of Periods" %> >
+	<%= link_to "Period # #{@period.id}", period_path(@period), :title => "List of Periods" %> >
+	Budget	
+<% end %>
+
+<div class="hastable">
+	
+	<div class="content-box">
+			<div class="two-column">
+				<div class="column">
+					
+					<div class="content-box content-box-header">
+						<div class="content-box-wrapper">
+							<h3>Period # <%= @period.id %></h3>
+							<p><%= @period.start.to_s(:date_medium) %> - <%= @period.finish.to_s(:date_medium) %></p>
+							
+							<table cellspacing="0">
+								<tbody>
+									<tr>
+										<td><h2><%= quid(@budget_total) %></h2>Outgoings</td>
+										<td><h2><%= quid(@period.budget.wages) %></h2>Wages</td>
+										<td><h2><%= quid(@budget_surplus) %></h2>Surplus</td>
+									</tr>
+								</tbody>
+							</table>
+						
+						</div>
+					</div>
+						
+				</div>
+				<div class="column column-right">
+					
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+
+	<% for account in @accounts %>
+<div class="inner-page-title">
+	<h3><%= account.name %> Account</h3>
+</div>
+	<table>
+		<thead>
+		<tr>
+			<th>Bill</th>
+			<th>Transaction / Due Date</th>
+			<th>Amount</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<% for transaction in account.transactions.budget_scope(@period.budget.id) %>
+		<tr <% if transaction.payment_date == nil %> class="notPosted" <% end %> >
+	  		<td><%= transaction.name %></td>
+			<td><%= transaction.transaction_date.to_s(:date_medium) %></td>
+			<td><%= quid(transaction.amount) %></td>
+			<td><% if transaction.payment_date != nil %>
+				<%= link_to "Unpost", :controller => "transactions", :action => "unpost", :id => transaction %>
+				<% else %>
+				<%= link_to "Post", :controller => "transactions", :action => "post", :id => transaction %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan="3"><strong>Total</strong></td>
+			<td><%= quid(budget_account_total(account.id, @period)) %></td>
+		</tr>
+		<tr>
+			<td colspan="3"><strong>To pay</strong></td>
+			<td><%= quid(budget_to_pay_total(account.id, @period)) %></td>
+		</tr>
+		<tr>
+		</tbody>
+	</table>
+	
+	<br />
+				<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+					<div class="portlet-header ui-widget-header">Add transaction<span class="ui-icon ui-icon-circle-arrow-s"></span></div>
+					<div class="portlet-content" style="display:none;" >
+						
+						<link href="/stylesheets/ui/ui.datepicker.css" rel="stylesheet" media="all" />
+				<script type="text/javascript" src="/javascripts/ui/ui.datepicker.js"></script>
+					<script type="text/javascript">
+					$(function() {
+						$('#datepicker_<%= account.id %>').datepicker({
+							numberOfMonths: 4,
+							changeYear: true
+						});
+					});
+					</script>
+
+							<% form_for @transaction do |f| %>
+							  <%= f.error_messages %>
+							<ul>
+
+								<li>
+									<div class="float-left">
+										<span>
+												<label  class="desc">
+													Name
+												</label>
+											<%= f.text_field :name, :maxlength => 15 %>
+										</span>
+									</div>
+
+									<div class="float-left">
+										<span>
+												<label  class="desc">
+													Amount
+												</label>
+											<%= f.text_field :amount, :maxlength => 6 %>
+										</span>
+									</div>
+
+									<div class="float-left">
+										<span>
+											<label  class="desc">
+												Due Date	
+											</label>
+											<input type="text" name="transaction[transaction_date]" id="datepicker_<%= account.id %>" />
+										</span>
+									</div>
+								</li>
+										<%= f.hidden_field :period_id, :value => @period.id %>
+										<%= f.hidden_field :budget_id, :value => @period.id %>
+										<%= f.hidden_field :account_id, :value => account.id %>
+										
+
+								<li class="buttons">
+									<button class="ui-state-default float-right ui-corner-all ui-button" type="submit"> Submit</button>
+								</li>
+							</ul>
+							<% end %>
+					</div>
+				</div>
+				
+				<br /><br />
+
+<% end %>
+
+</div>
+
+

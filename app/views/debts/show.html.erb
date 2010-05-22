@@ -1,0 +1,172 @@
+<% title "debt" %>
+
+<% content_for :breadcrumb do %>
+	<%= link_to "Periods", periods_path, :title => "List of Periods" %> >
+	<%= link_to "Period # #{@period.id}", period_path(@period), :title => "List of Periods" %> >
+	Debt
+<% end %>
+
+
+<div class="hastable">
+	
+	<div class="content-box">
+			<div class="two-column">
+				<div class="column">
+					
+					<div class="content-box content-box-header">
+						<div class="content-box-wrapper">
+							<h3>Period # <%= @period.id %></h3>
+							
+							<p><%= @period.start.to_s(:date_medium) %> - <%= @period.finish.to_s(:date_medium) %></p>
+							
+							<table cellspacing="0">
+								<tbody>
+									<tr>
+										<td><h2><%=quid(@period_balance) %></h2>Total Debt</td>
+										<td><h2><%= quid(@debt.transactions.category(@period, 1).unposted.sum(:amount)) %></h2>Min Pay - To Pay</td>
+										<td><h2><%= quid(@debt.transactions.positive.sum(:amount) + @debt.transactions.negative.posted.sum(:amount) ) %></h2>Total Paid Off</td>
+									</tr>
+								</tbody>
+							</table>
+						
+						</div>
+					</div>
+						
+				</div>
+				<div class="column column-right">
+					<table cellspacing="0">
+						<tbody>
+							
+							<tr>
+								<td>Min Payment</td>
+								<td><%= quid(@debt.transactions.category(@period, 1).sum(:amount)) %> (Total)<br />
+								</td>
+							</tr>
+							<tr class="alt">  	  	
+								<td>Total Payments</td>
+								<td><%= quid(@debt.transactions.positive.sum(:amount)) %></td>
+							</tr>
+							<tr>  	  	
+								<td>Total Interest</td>
+								<td><%= quid(@debt.transactions.category(@period, 2).sum(:amount)) %></td>
+							</tr >
+								<tr  class="alt">  	  	
+									<td>Total New Charges</td>
+									<td><%= quid(@debt.transactions.negative.posted.sum(:amount)) %></td>
+								</tr>
+							<tr>  	  	
+								<td>Previous Period Dif</td>
+								<td><%= quid(@pre_bal_diff) %></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+<% for account in @accounts %>
+<div class="inner-page-title">
+	<h3><%= account.name %> Account </h3>
+</div>
+	<table>
+		<thead>
+		<tr>
+			<th>#</th>
+			<th>Type</th>
+			<th>Transaction / Due Date</th>
+			<th>Posted Date</th>
+			<th>Amount</th>
+			<th style="text-align:right;">
+				<img src="/images/icons/accept.png" /> 
+				<% if account.direct_debit == true %>
+				<img src="/images/icons/direct-debit.png" title="Direct Debit" width="20" height="14" />
+				<% end %>
+			</th>
+				
+		</tr>
+		</thead>
+		<tbody>
+		<% for transaction in account.transactions.period(@period) %>
+		<tr <% if transaction.payment_date == nil %> class="notPosted" <% end %> >
+			<td><%= transaction.id %></td>
+	  		<td><%= transaction.category.name %></td>
+			<td><%= transaction.transaction_date.to_s(:date_medium) %></td>
+			<td><%= transaction.payment_date.to_s(:date_medium) unless transaction.payment_date == nil  %></td>
+			<td><%= quid(transaction.amount) %></td>
+			<td><% if transaction.payment_date != nil %>
+				<%= link_to "Unpost", :controller => "transactions", :action => "unpost", :id => transaction %>
+				<% else %>
+				<%= link_to "Post", :controller => "transactions", :action => "post", :id => transaction %>
+				<% end %>
+			</td>
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan="5"><strong>Cleared Balance</strong></td>
+			<td><%= quid(account_balance(account.id, @period)) %></td>
+		</tr>
+		<tr>
+		</tbody>
+	</table>
+	
+	<br />
+				<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
+					<div class="portlet-header ui-widget-header">Add transaction
+						<span onclick="Effect.toggle('form-<%= account.id %>', 'blind'); return false;" class="ui-icon ui-icon-circle-arrow-s"></span></div>
+					<div class="portlet-content" id="form-<%= account.id %>" style="display:none;">
+						
+						
+						
+							<% form_for @transaction do |f| %>
+							  <%= f.error_messages %>
+							<ul>
+
+								<li>
+
+									<div class="float-left">
+										<span>
+												<label  class="desc">
+													Transaction Type
+												</label>
+											<%= collection_select("transaction", "category_id", @categories, :id, :name ) %>
+										</span>
+									</div>
+									<div class="float-left">
+										<span>
+												<label  class="desc">
+													Amount
+												</label>
+											<%= f.text_field :amount, :maxlength => 6 %>
+										</span>
+									</div>
+									<div class="float-left">
+										<span>
+											<label  class="desc">
+												Transaction Date
+											</label>
+											
+											<%= f.date_select :transaction_date %>
+											
+										</span>
+									</div>
+								</li>
+										<%= f.hidden_field :period_id, :value => @period.id %>
+										<%= f.hidden_field :debt_id, :value => @debt.id %>
+										<%= f.hidden_field :account_id, :value => account.id %>
+
+								<li class="buttons">
+									<button class="ui-state-default float-right ui-corner-all ui-button" type="submit"> Submit</button>
+								</li>
+							</ul>
+							<% end %>
+					</div>
+				</div>
+				
+				<br /><br />
+
+<% end %>
+
+</div>
+
+

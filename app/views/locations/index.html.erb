@@ -1,0 +1,30 @@
+<% title "Locations" %>
+
+
+<div class="content-box">
+	<div id="container">
+		<p>
+		  <p><%= link_to "New Location", new_location_path %></p>
+		</p>
+	</div>
+	
+	
+<div class="hastable">
+<table>
+	<thead>
+  		<tr>
+		    <td>Name</td>
+		</tr>
+	</thead>
+	<tbody>
+  		<% for location in @locations %>
+		    <tr>
+		      <td><%= link_to location.name, location %></td>
+		    </tr>
+		  <% end %>
+	<tbody>
+</table>
+</div>
+
+</div>
+</div>

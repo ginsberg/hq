@@ -1,0 +1,94 @@
+<% title "Location" %>
+
+<div class="content-box">
+<div id="container">
+	
+	<div class="inner-page-title">
+		<h3> <%=h @location.name %></h3>
+		<span>
+				<%= link_to 'Locations', locations_path %> &gt; 
+				<% for page in @location.ancestors.reverse %>  
+			   	<%= link_to h(page.name), page %> &gt;  
+			 	<% end %> 
+			 	<%= @location.name %>
+		</span>
+		<p>
+		  <%= link_to "Edit", edit_location_path(@location) %> |
+		  <%= link_to "Destroy", @location, :confirm => 'Are you sure?', :method => :delete %> |
+		  <%= link_to "View All", locations_path %>
+		</p>
+	</div>
+	
+	<% unless @location.children.blank? %>
+	
+	<h2>Locations</h2>
+	
+	<div class="hastable">
+	<table>
+		<thead>
+			<tr>
+				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
+				<td>Location Name</td>
+			</tr>
+		</thead>
+		<tbody>
+			
+			<% for location in @location.children %>
+			<tr>
+				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
+				<td><%= link_to location.name, location_path(location) %></td>
+			</tr>
+			<% end %>
+			
+			
+		</tbody>
+	</table>
+	</div>
+	<p></p>
+	
+	<% end %>
+	
+	<% unless @location.assets.blank? %>
+
+	<h2>Assets</h2>
+	
+	<div class="hastable">
+	<table>
+		<thead>
+			<tr>
+				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
+				<td>Thumbnail</td>
+				<td>Asset Name</td>
+				<td>Location</td>
+				<td>Rating</td>
+				<td>ID</td>	
+			</tr>
+		</thead>
+		<tbody>
+			
+			<% for asset in @location.assets %>
+			<tr>
+				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
+				<td><%= image_tag asset.scans.first.data.url(:thumb) %></td>
+				<td><%= link_to asset.name, asset %></td>
+				<td><%= link_to asset.location.name, location %></td>
+				<td><%= ratings_for asset, :static, :small => true, :dimension => :quality %></td>
+				<td><%= asset.id %></td>
+				</td>
+			</tr>
+			<% end %>
+			
+			
+		</tbody>
+	</table>
+	</div>
+	
+	<% end %>
+
+
+
+
+
+
+</div>
+</div>

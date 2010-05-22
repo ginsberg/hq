@@ -1,0 +1,45 @@
+<% title "period" %>
+
+<% content_for :breadcrumb do %>
+	<%= link_to "Periods", periods_path, :title => "List of Periods" %> >
+	Period # <%= @period.id %>
+<% end %>
+
+
+<div class="clearfix"></div>
+
+	<div class="inner-page-title">
+		<h3>Period # <%= @period.id %></h3>
+	</div>
+	
+	<div id="dashboard-buttons">
+		<ul>
+			<li>
+				<%= link_to "Debt", period_debt_path(@period), :class => "Debt tooltip", :title => "Debt" %>
+			</li>
+			<li>
+				<%= link_to "Budget", period_budget_path(@period), :class => "Clipboard_3 tooltip", :title => "Budget" %>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="clearfix"></div>
+	
+		<div class="content-box">
+			<div class="two-column">
+				
+				<div class="column column-right">
+					<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all">
+						<div class="portlet-header ui-widget-header">Create next period<span class="ui-icon ui-icon-circle-arrow-s"></span></div>
+						<div class="portlet-content">
+							<h4>Create Period <%= @period.id+1 %></h4>
+								<%= render :partial => "form" %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		
+	<div class="clear"></div>

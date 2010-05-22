@@ -1,0 +1,2 @@
+page.replace_html :tags, :partial => 'tags/tag', :collection => @asset.tag_list
+page[:tag_form].reset

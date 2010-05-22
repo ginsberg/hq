@@ -1,0 +1,116 @@
+<% title "Asset" %>
+
+<div class="content-box">
+<div id="container">
+	
+	<div class="inner-page-title">
+		<h3>A gallery example</h3>
+		<span>
+				Locations &gt; 
+				<% for page in @asset.location.ancestors.reverse %>  
+			   	<%= link_to h(page.name), page %> &gt;  
+			 	<% end %> 
+			 	<%= link_to @asset.location.name, location_path(@asset.location) %> &gt;
+				<%= @asset.name %>
+		</span>
+	</div>
+
+	
+		<div class="two-column">
+			<div class="column-content-box">
+				<div class="content-box">
+					
+					<%= image_tag @asset.scans.first.data.url(:medium) %>
+
+					
+				</div>
+			</div>
+			<div class="column-content-box column-right">
+				<div class="content-box">
+					<h4 class="ui-box-header ui-corner-all"><%=h @asset.name %></h4>
+					
+						<p>
+						  <%= link_to "Edit", edit_asset_path(@asset) %> |
+						  <%= link_to "Destroy", @asset, :confirm => 'Are you sure?', :method => :delete %> |
+						  <%= link_to "View All", assets_path %> |
+						<%= link_to 'Download Original', @asset.scans.first.data.url %>
+
+						</p>
+									
+					<div class="hastable">
+						<table cellspacing="0">
+						
+							<tbody>
+								<tr class="alt">  	  	
+									<td width="20%"><strong>Name:</strong></td>
+									<td>
+										
+										<%= in_place_editor_field :asset, 'name' %>
+									
+									</td>
+								</tr>
+								<tr>  	  	
+									<td><strong>Location:</strong></td>
+									<td> <%= link_to @asset.location.name, location_path(@asset.location) %></td>
+								</tr>
+								<tr class="alt">  	  	
+									<td><strong>Asset ID:</strong></td>
+									<td> <%= @asset.id %></td>
+								</tr>
+								<tr>  	  	
+									<td><strong>Date Imported:</strong></td>
+									<td><%= @asset.created_at.to_s(:date_medium) %></td>
+								</tr>
+								<tr class="alt">  	  	
+									<td><strong>Format:</strong></td>
+									<td></td>
+								</tr>
+								<tr>  	  	
+									<td><strong>Description:</strong></td>
+									<td>
+										<!--
+											TODO The outputted text needs to be formated with 'simple_format to preserve line breaks
+										-->
+										<%= in_place_editor_field :asset, 'description', {}, {:rows=>8}  %>
+									</td>
+								</tr>
+								<tr class="alt">  	  	
+									<td>Rating:</td>
+									<td><%= ratings_for @asset, :dimension => :quality %></td>
+								</tr>
+								<tr>  	  	
+									<td colspan="2"> 
+									
+										<% form_remote_for @asset, :html => {:id => "tag_form"} do |f| -%>
+											<%= text_field_with_auto_complete :tag, :name %>
+											<%= submit_tag "Add tag", :id => "submit" %>
+										<% end -%>
+									
+										<ul id="tags">
+										
+											<%= render :partial => "tags/tag", :collection => @asset.tag_list %>
+									
+										</ul>
+										
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+					
+
+				
+				</div>
+			</div>
+		</div>
+
+<div class="clear"></div>
+
+
+
+
+
+
+</div>
+</div>

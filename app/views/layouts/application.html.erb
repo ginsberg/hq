@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title><%= h(yield(:title) || "Untitled") %></title>
+	
+	<%= javascript_include_tag :defaults, :cache => true %>
+
+	<%= javascript_include_tag :defaults %>
+	<%= ajaxful_rating_style %>
+	
+	
+	<link href="/stylesheets/ui/ui.base.css" rel="stylesheet" media="all" />
+
+	<link href="/stylesheets/themes/black_rose/ui.css" rel="stylesheet" title="style" media="all" />
+
+	<!--[if IE 6]>
+	<link href="css/ie6.css" rel="stylesheet" media="all" />
+	
+	<script src="js/pngfix.js"></script>
+	<script>
+	  /* Fix IE6 Transparent PNG */
+	  DD_belatedPNG.fix('.logo, ul#dashboard-buttons li a, .response-msg, #search-bar input');
+
+	</script>
+	<![endif]-->
+</head>
+<body>
+	<div id="page_wrapper">
+		<div id="page-header">
+			<div id="page-header-wrapper">
+				<div id="top">
+					<a href="dashboard.php" class="logo" title="Admintasia V2.0">Admintasia V2.0</a>
+					<div class="welcome">
+						<span class="note">Welcome, <a href="#" title="Welcome, Horia Simon">Scott Holland</a></span>
+						<a class="btn ui-state-default ui-corner-all" href="#">
+							<span class="ui-icon ui-icon-wrench"></span>
+							Settings
+						</a>
+						<a class="btn ui-state-default ui-corner-all" href="#">
+							<span class="ui-icon ui-icon-person"></span>
+							My account
+						</a>
+						<a class="btn ui-state-default ui-corner-all" href="/logout">
+							<span class="ui-icon ui-icon-power"></span>
+							Logout
+						</a>						
+					</div>
+				</div>
+				<ul id="navigation">
+					<li>
+						<a href="dashboard.php" class="sf-with-ul">Home</a>
+					</li>
+					<li>
+						<a href="/periods/1" class="sf-with-ul">Money</a>
+					</li>
+				
+					<li>
+						<a href="/locations" class="sf-with-ul">Assets</a>
+						<ul>
+							<li><%= link_to "New Asset", new_asset_path %></li>
+							<li><%= link_to "Locations", locations_path %></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div id="sub-nav"><div class="page-title">
+			<h1><%= h(yield(:title) || "") %></h1>
+			
+			<span>
+				<%= yield :breadcrumb %>
+			</span>
+		</div>
+		
+			
+</div>
+		<div id="page-layout"><div id="page-content">
+			<div id="page-content-wrapper">
+				
+
+			
+		      <%= yield %>
+		
+		
+			
+			
+<div id="sidebar">
+	<div class="sidebar-content">
+				
+				<a id="close_sidebar" class="btn ui-state-default full-link ui-corner-all" href="#drill">
+					<span class="ui-icon ui-icon-circle-arrow-e"></span>
+					Close Sidebar
+				</a>
+				
+				<a id="open_sidebar" class="btn tooltip ui-state-default full-link icon-only ui-corner-all" title="Open Sidebar" href="#">
+					<span class="ui-icon ui-icon-circle-arrow-w"></span>
+				</a>
+				
+				<div class="hide_sidebar">
+					
+					<% if 	controller.controller_name  ==  "debts" or 
+							controller.controller_name  == "periods" or
+							controller.controller_name  == "budget"
+						
+						 %>
+					
+					<%= render :partial => "layouts/sidebar_periods", 
+					:locals => { 	:period_id => @period.id, 
+									:periods => @periods,
+									:current_period => @current_period,
+									:current_controller => yield(:title)
+									} %>
+					
+					<% end %>
+				</div>
+				
+</div>		
+		
+		<div class="clear"></div>			
+			<div class="clear"></div>
+	</div></div>
+	<div class="clear"></div>
+	<div id="footer">
+		<a href="#" title="Home">Top</a>  
+
+	</div>
+	<div id="copyright">
+		Powered by Scott Holland
+	</div>
+</body>
+</html>

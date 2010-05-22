@@ -1,0 +1,20 @@
+<% title "Scan" %>
+
+<p>
+  <strong>Main Path:</strong>
+  <%=h @scan.main_path %>
+</p>
+<p>
+  <strong>Thumb Path:</strong>
+  <%=h @scan.thumb_path %>
+</p>
+<p>
+  <strong>Asset:</strong>
+  <%=h @scan.asset_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_scan_path(@scan) %> |
+  <%= link_to "Destroy", @scan, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", scans_path %>
+</p>

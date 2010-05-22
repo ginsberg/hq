@@ -1,0 +1,9 @@
+one:
+  main_path: MyString
+  thumb_path: MyString
+  asset_id: 1
+
+two:
+  main_path: MyString
+  thumb_path: MyString
+  asset_id: 1

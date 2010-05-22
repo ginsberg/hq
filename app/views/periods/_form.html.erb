@@ -1,0 +1,43 @@
+<link href="/stylesheets/ui/ui.datepicker.css" rel="stylesheet" media="all" />
+<script type="text/javascript" src="/javascripts/ui/ui.datepicker.js"></script>
+
+
+<% form_for @new_period do |f| -%>
+  
+	<ul>
+		<li>
+			<label  class="desc">
+				Name
+			</label>
+			<div>
+				<input type="text" tabindex="6"	  class="field text" name="new_period[name]" />
+			</div>
+		</li>
+		<li>
+			<div class="float-left">
+				<span>
+					<label  class="desc">
+						Start Date
+					</label>
+						<input type="text" tabindex="6"	  value="<%= @last_period.to_s(:date_medium)  %>" class="field text" name="new_period[start]" />
+					<label >Example</label>
+				</span>
+			</div>
+			
+			<div class="float-left">
+				<span>
+					<label  class="desc">
+						End Date
+					</label>	
+						<%= date_select :new_period, :finish%>
+					<label >Example</label>
+				</span>
+			</div>
+		</li>
+			
+		<li class="buttons">
+			<button class="ui-state-default float-right ui-corner-all ui-button" type="submit">Create</button>
+		</li>
+	</ul>
+
+<% end -%>

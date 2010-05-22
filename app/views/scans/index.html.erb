@@ -1,0 +1,21 @@
+<% title "Scans" %>
+
+<table>
+  <tr>
+    <th>Main Path</th>
+    <th>Thumb Path</th>
+    <th>Asset</th>
+  </tr>
+  <% for scan in @scans %>
+    <tr>
+      <td><%=h scan.main_path %></td>
+      <td><%=h scan.thumb_path %></td>
+      <td><%=h scan.asset_id %></td>
+      <td><%= link_to "Show", scan %></td>
+      <td><%= link_to "Edit", edit_scan_path(scan) %></td>
+      <td><%= link_to "Destroy", scan, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Scan", new_scan_path %></p>
