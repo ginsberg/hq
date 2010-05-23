@@ -1,4 +1,5 @@
-# Will exclude all .log files
 *.log
 public/system/scans/*
 public/images/assets/*
+config/database.yml
+config/deploy.rb
