@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100517152241) do
+ActiveRecord::Schema.define(:version => 20100528170511) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20100517152241) do
     t.text     "description"
     t.integer  "format"
   end
+
+  create_table "barcodes", :force => true do |t|
+    t.integer  "sku",              :limit => 8
+    t.integer  "barcodeable_id"
+    t.string   "barcodeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "barcodes", ["sku"], :name => "index_barcodes_on_sku", :unique => true
 
   create_table "budgets", :force => true do |t|
     t.string   "name"

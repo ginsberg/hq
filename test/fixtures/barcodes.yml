@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sku: 1
+  barcodeable_id: 1
+  barcodeable_type: MyString
+
+two:
+  sku: 1
+  barcodeable_id: 1
+  barcodeable_type: MyString
