@@ -1,22 +1,21 @@
-<div class="box ui-widget ui-widget-content ui-corner-all">
+<div id="options">
 
-<h3>Period</h3>
-
-<div class="content">
+	<div class="bghighlight"><h3 class="sidebar">Period</h3></div>
 	
 	<div class="response-msg go_to_current_period ui-corner-all">
 		<div class="period_id"><%= current_period %></div>
 		<div class="text"><a href="/periods/<%= current_period %>">Current Period</a></div>
 	</div>
 	
-<% for period in periods %>
-		
-		<a href="/periods/<%= period.id %>/<%= current_controller unless current_controller == 'period' %>"  
-			class="btn ui-state-default full-link ui-corner-all">
-			<span class='ui-icon ui-icon-circle-arrow-e'></span><%= period.id %> <%= period.name %>
-		</a>
 
-<% end %>
+			<dl class="icon-menu">
+				<% for period in periods %>
+				
+				<dt><a href="gallery.aspx"><img src="/images/site/icons/calendar_view_day.png" width="16" height="16" alt="Check out the template gallery" /></a></dt>
+				<dd><a href="gallery.aspx">Period <%= period.id %></a></dd>
+				<dd class="last"><%= period.name %></dd>
+				
+				<% end %>
+			</dl>
 
-	</div>
 </div>

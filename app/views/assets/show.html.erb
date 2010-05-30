@@ -1,120 +1,134 @@
-<% title "Asset" %>
+<% title "Asset: #{@asset.name}" %>
 
-<div class="content-box">
-<div id="container">
-	
-	<div class="inner-page-title">
-		<h3>A gallery example</h3>
-		<span>
-				Locations &gt; 
-				<% for page in @asset.location.ancestors.reverse %>  
-			   	<%= link_to h(page.name), page %> &gt;  
-			 	<% end %> 
-			 	<%= link_to @asset.location.name, location_path(@asset.location) %> &gt;
-				<%= @asset.name %>
-		</span>
-	</div>
+<% content_for :breadcrumbs do %>
+	<%= link_to 'Locations', locations_path %> &gt; 
+	<% for page in @asset.location.ancestors.reverse %>  
+   	<%= link_to h(page.name), page %> &gt;  
+ 	<% end %> 
+ 	<%= link_to @asset.location.name, location_path(@asset.location) %> &gt;
+	<%= @asset.name %>
+<% end %>
 
-	
-		<div class="two-column">
-			<div class="column-content-box">
-				<div class="content-box">
-					
-					<%= image_tag @asset.scans.first.data.url(:medium) %>
+<% content_for :titleSummary do %>
+	Some text will go here
+<% end %>
 
-					
-				</div>
-			</div>
-			<div class="column-content-box column-right">
-				<div class="content-box">
-					<h4 class="ui-box-header ui-corner-all"><%=h @asset.name %></h4>
-					
-						<p>
-						  <%= link_to "Edit", edit_asset_path(@asset) %> |
-						  <%= link_to "Destroy", @asset, :confirm => 'Are you sure?', :method => :delete %> |
-						  <%= link_to "View All", assets_path %> |
-						<%= link_to 'Download Original', @asset.scans.first.data.url %>
+<% content_for :campaignActions do %>
+	<!--
+		TODO Link needs fixing
+	-->
+	<a href="#" id="viewCampaign">
+		<img src="/images/site/buttons/export-original.png" width="120" height="21" alt="View Campaign" class="reportButton">
+	</a>
+<% end %>
 
-						</p>
-									
-					<div class="hastable">
-						<table cellspacing="0">
-						
-							<tbody>
-								<tr class="alt">  	  	
-									<td width="20%"><strong>Name:</strong></td>
-									<td>
-										
-										<%= in_place_editor_field :asset, 'name' %>
-									
-									</td>
-								</tr>
-								<tr>  	  	
-									<td><strong>Location:</strong></td>
-									<td> <%= link_to @asset.location.name, location_path(@asset.location) %></td>
-								</tr>
-								<tr class="alt">  	  	
-									<td><strong>Asset ID:</strong></td>
-									<td> <%= @asset.id %></td>
-								</tr>
-								<tr>  	  	
-									<td><strong>Date Imported:</strong></td>
-									<td><%= @asset.created_at.to_s(:date_medium) %></td>
-								</tr>
-								<tr class="alt">  	  	
-									<td><strong>Format:</strong></td>
-									<td></td>
-								</tr>
-								<tr class="alt">  	  	
-									<td><strong>Sku:</strong></td>
-									<td><%= @asset.barcodes.first.sku %></td>
-								</tr>
-								<tr>  	  	
-									<td><strong>Description:</strong></td>
-									<td>
-										<!--
-											TODO The outputted text needs to be formated with 'simple_format to preserve line breaks
-										-->
-										<%= in_place_editor_field :asset, 'description', {}, {:rows=>8}  %>
-									</td>
-								</tr>
-								<tr class="alt">  	  	
-									<td>Rating:</td>
-									<td><%= ratings_for @asset, :dimension => :quality %></td>
-								</tr>
-								<tr>  	  	
-									<td colspan="2"> 
-									
-										<% form_remote_for @asset, :html => {:id => "tag_form"} do |f| -%>
-											<%= text_field_with_auto_complete :tag, :name %>
-											<%= submit_tag "Add tag", :id => "submit" %>
-										<% end -%>
-									
-										<ul id="tags">
-										
-											<%= render :partial => "tags/tag", :collection => @asset.tag_list %>
-									
-										</ul>
-										
-									</td>
-								</tr>
-								
-							</tbody>
+<% content_for :sidebar do %>
+		<div id="options">
+			<!--
+				TODO Link needs fixing
+			-->
+			<div class="sidebarbutton"><a href="#">
+				<img src="/images/site/buttons/back-to-location.png" width="207" height="41" alt="Create a new campaign"></a>
+			</div><!-- sidebarbutton -->
+
+			<div class="bghighlight">
+				<h3 class="sidebar">You might also want to...</h3>
+			</div><!-- bghighlight -->
+
+			<dl class="icon-menu">
+	    		<dt><a href="dstesting.aspx"><img src="/images/site/icons/package_add.png" width="16" height="16" alt="Run a design and spam test" /></a></dt>
+				<dd><a href="dstesting.aspx">Create a Location</a></dd>
+				<dd class="last">Add a new location to the database.</dd>
+				<dt><a href="editResend.aspx"><img src="/images/site/icons/picture_add.png" width="16" height="16" alt="Resend a sent campaign" /></a></dt>
+				<dd><a href="editResend.aspx">Upload an asset</a></dd>
+				<dd class="lastBig">Add an asset to an existing location.</dd>
+			</dl>
+
+		</div><!-- options -->
+<% end %>
+
+<div id="assetOverview">
+
+	<div class="assetColOne">
+		<%= image_tag @asset.scans.first.data.url(:medium) %>
+	</div><!-- colOne -->
+
+	<div class="assetColTwo">
+		
+		<div class="formBG">
+			<div class="formWrapper">
+
+				<h3 class="snapshot">Asset Details</h3>
+
+					<div class="formContainer">
+
+						<table cellpadding="2" cellspacing="0" width="100%" class="grid">
+							<tr>
+							    <th style="width:140px">SKU</th>
+							    <td><%= @asset.barcodes.first.sku %></td>
+							</tr>
+							<tr>
+							    <th style="width:140px">Location SKU</th>
+							    <td><a href="#"><%= link_to @asset.location.name, location_path(@asset.location) %></a></td>
+							</tr>
+							<tr>
+							    <th>Asset ID</th>
+							    <td><%= @asset.id %></td>
+
+							</tr>
+							<tr>
+							    <th>Date imported</th>
+							    <td><%= @asset.created_at.to_s(:date_medium) %></td>
+							</tr>
+							<tr>
+							    <th>Format</th>
+
+							    <td>Photo</td>
+							</tr>
+							<tr>
+							    <th class="last">Description</th>
+							    <td class="last">
+							    	<!--
+										TODO The outputted text needs to be formated with 'simple_format to preserve line breaks
+									-->
+									<%= in_place_editor_field :asset, 'description', {}, {:rows=>8}  %>
+							    </td>
+							</tr>
+							<tr>
+							    <th class="last">Rating</th>
+							    <td class="last"><%= ratings_for @asset, :dimension => :quality %></td>
+							</tr>
 						</table>
-					</div>
-					
+					</div><!-- formContainer -->
+			
+			
+				<h3 class="snapshot">Tags</h3>
+			
+					<div class="formContainer">
 
-				
-				</div>
-			</div>
-		</div>
+						<table cellpadding="2" cellspacing="0" width="100%" class="grid">
+							<tr>
+								<td colspan="2">
+									<% form_remote_for @asset, :html => {:id => "tag_form"} do |f| -%>
+										<%= text_field_with_auto_complete :tag, :name %>
+										<%= submit_tag "Add tag", :id => "submit" %>
+									<% end -%>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<div id="tags">
+										<%= render :partial => "tags/tag", :collection => @asset.tag_list %>
+									</div>
+								</td>
+							</tr>
+						</table>
 
-<div class="clear"></div>
+					</div><!-- formContainer -->
+			
+			</div><!-- formWrapper -->
+		</div><!-- formBG -->
 
-
-
-
-
-
-</div>
-</div>
+	</div><!-- assetColTwo -->
+</div><!-- assetOverview -->
+		

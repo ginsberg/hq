@@ -1,0 +1,53 @@
+/* Asset Show */
+
+#assetOverview {
+	margin-top:20px;
+}
+
+#assetOverview .assetColOne {
+	float:left;
+	background-color: #000;
+	margin-right:20px;
+}
+
+#assetOverview .assetColTwo {
+	background-color: #cccccc;
+	overflow: auto;
+	
+}
+
+/* Debt */
+
+.red-highlight {
+	background-color: #F8ACAC !important;
+	color:#8D3F3F !important;
+}
+
+/* Tags */
+
+span.tag {
+background:url("/images/site/icons/tag.png") no-repeat scroll left center transparent;
+border-right:1px solid #E5DC8A;
+display:-moz-inline-box;
+float:left;
+margin:0 3px 3px 0;
+padding:1px 3px 1px 9px;
+}
+
+span.tag a {
+	color:#403D26;
+	line-height: 16px;
+text-decoration:none;
+}
+
+span.tag a.delete  {
+	color:#CCCCCC;
+	font-weight:bold;
+	text-decoration:none;
+	line-height: 16px;
+	
+}
+
+span.tag a.delete:hover {
+	color:#3081DD;
+}

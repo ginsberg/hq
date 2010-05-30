@@ -1,23 +1,17 @@
-<% title "Location" %>
+<% title "Location: #{@location.name}" %>
 
-<div class="content-box">
-<div id="container">
-	
-	<div class="inner-page-title">
-		<h3> <%=h @location.name %></h3>
-		<span>
-				<%= link_to 'Locations', locations_path %> &gt; 
-				<% for page in @location.ancestors.reverse %>  
-			   	<%= link_to h(page.name), page %> &gt;  
-			 	<% end %> 
-			 	<%= @location.name %>
-		</span>
-		<p>
-		  <%= link_to "Edit", edit_location_path(@location) %> |
-		  <%= link_to "Destroy", @location, :confirm => 'Are you sure?', :method => :delete %> |
-		  <%= link_to "View All", locations_path %>
-		</p>
-	</div>
+<% content_for :breadcrumbs do %>
+	<%= link_to 'Locations', locations_path %> &gt; 
+	<% for page in @location.ancestors.reverse %>  
+   	<%= link_to h(page.name), page %> &gt;  
+ 	<% end %>
+ 	<%= @location.name %>
+<% end %>
+
+<% content_for :titleSummary do %>
+	Some text will go here
+<% end %>
+
 	
 	<% unless @location.children.blank? %>
 	
@@ -44,44 +38,32 @@
 		</tbody>
 	</table>
 	</div>
-	<p></p>
 	
 	<% end %>
 	
 	<% unless @location.assets.blank? %>
 
 	<h2>Assets</h2>
+
 	
-	<div class="hastable">
-	<table>
-		<thead>
-			<tr>
-				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
-				<td>Thumbnail</td>
-				<td>Asset Name</td>
-				<td>Location</td>
-				<td>Rating</td>
-				<td>ID</td>	
-			</tr>
-		</thead>
-		<tbody>
+		<% for asset in @location.assets %>
 			
-			<% for asset in @location.assets %>
-			<tr>
-				<td class="center"><input type="checkbox" class="checkbox" value=""/></td>
-				<td><%= image_tag asset.scans.first.data.url(:thumb) %></td>
-				<td><%= link_to asset.name, asset %></td>
-				<td><%= link_to asset.location.name, location %></td>
-				<td><%= ratings_for asset, :static, :small => true, :dimension => :quality %></td>
-				<td><%= asset.id %></td>
-				</td>
-			</tr>
+			<div class="editPreview">
+				<%= image_tag asset.scans.first.data.url(:thumb_wide) %>
+				<h2>SKU: <%= link_to asset.barcodes.first.sku, asset %> </h2>
+				<h3><%= ratings_for asset, :static, :small => true, :dimension => :quality %></h3>
+				
+			</div>
+				
 			<% end %>
+		<% else %>
+		
+			<div id="blankSlateIntro">
+				<h1><a href="/createsend/step1.aspx">Add an asset</a></h1>
+					<p>There are currently no assets at this location</p>
+				</div>
 			
-			
-		</tbody>
-	</table>
-	</div>
+	
 	
 	<% end %>
 
@@ -90,5 +72,4 @@
 
 
 
-</div>
-</div>
+	

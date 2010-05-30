@@ -5,13 +5,10 @@ class Asset < ActiveRecord::Base
   has_many :scans 
   
   acts_as_taggable
-  ajaxful_rateable :stars => 10, :dimensions => [:quality], :allow_update => true
+  ajaxful_rateable :stars => 5, :dimensions => [:quality], :allow_update => true
   accepts_nested_attributes_for :scans, :allow_destroy => true
   
   after_create :generate_barcode
-  
-  
-  
   
   private
   

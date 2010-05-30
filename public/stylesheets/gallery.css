@@ -1,0 +1,180 @@
+/* ----- GALLERY ----- */
+
+.quickPreview {
+	border: 1px solid #e0e0e0;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	background: #fff;
+	float: left;
+	height: 183px;
+	margin: 0 0 15px 8px;
+	overflow: hidden;
+	width: 248px;
+}
+.quickPreviewOn {
+	border: 1px solid #e1dbb0;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	background: #fff7c0;
+	float: left;
+	height: 183px;
+	margin: 0 0 15px 8px;
+	overflow: hidden;
+	width: 248px;
+}
+.quickPreview p {
+	height: 133px;
+	margin: 15px 12px 0 15px;
+	width: 218px;
+	cursor: pointer;
+}
+#formBG .quickPreview p {
+	height: 133px;
+	margin: 15px 12px 0 15px;
+	width: 218px;
+	cursor: pointer;
+}
+#formBG .quickPreviewOn p {
+	height: 130px;
+	margin: 15px 15px 0 15px;
+	width: 218px;
+	border-bottom: 3px solid #ffc600;
+	cursor: pointer;
+}
+.quickPreview h2, .quickPreviewOn h2 {
+	font-size: 11px;
+	font-weight: normal;
+	margin: 0 15px;
+	padding: 10px 0 0 0;
+}
+.quickPreview input, .quickPreviewOn input {
+	float: left;
+	_margin-top: -3px;
+}
+.quickPreview label, .quickPreviewOn label {
+	float: left;
+	padding-left: 5px;
+}
+.editPreview {
+	float: left;
+	height: 150px;
+	margin: 0 8px 15px 0;
+	overflow: hidden;
+	width: 165px;
+	border: 1px solid #e0e0e0;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	-webkit-border-radius:6px;
+	background: #fff;
+}
+.editPreview img {
+	height: 89px;
+	margin: 10px 8px 0 10px;
+	width: 145px;
+	cursor: pointer;
+	border: 1px solid #e0e0e0;
+}
+.editPreview h2 {
+	font-size: 11px;
+	margin: 0 15px;
+	padding: 8px 0 5px 0;
+}
+.editPreview h3 {
+	color: #959595;
+	margin: 0 15px;
+	padding: 3px 0 0 0;
+	border-top: 1px solid #eee;
+	font-size: 11px;
+	font-weight: normal;
+}
+.editPreview a.download {
+	background: url(img/icons/smallsave.png) no-repeat 0 3px;
+	padding-left: 14px;
+}
+.templateZoom {
+	float: right;
+	width: 45px;
+	height: 18px;
+	background: #fff url(/img/icons/zoom.gif) no-repeat 5px 3px;
+	padding: 2px 0 2px 24px;
+	font-size: 11px;
+	color: #959595;
+}
+.galleryCasing {
+	margin: 0 0 15px 0;
+}
+h2.withLineBig {
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e0e0e0;
+	margin: 15px 0 25px 0;
+	color: #5e5e5e;
+}
+
+/* ----- EDIT TEMPLATE ----- */
+
+#templateGallery {
+	margin-bottom: 5px;
+	font-size: 11px;
+}
+.templateThumb {
+	margin: 3px;
+	height: auto;
+	float: left;
+	text-align: center;
+}
+.templateThumb img{
+	display: inline;
+	margin: 5px;
+	border: 1px solid #dadada;
+	}
+.templateThumb a:hover img {
+	border: 1px solid #a7a7a7;
+}
+.templateThumb input {
+	margin-top: 40px;
+	float: left;
+}
+.phototitle {
+	text-align: center;
+	font-size: 10px;
+	width: 120px;
+	margin: 0 3px 3px 3px;
+	color: #;
+}
+.templateImage {
+	margin: 0;
+	padding: 10px 0;
+	border-top: 1px solid #f2f2f2;
+}
+.imageWrapper {
+	width: 130px;
+	height: 40px;
+	border: 1px solid #dadada;
+	float: left;
+	margin: 0 7px 0 0;
+	overflow: hidden;
+}
+.templateHolder p {
+	font-size: 11px;
+	line-height: 13px;
+}
+.templateWrapper {
+	float: left;
+	width: 150px;
+	padding: 15px 20px 10px 0;
+}
+.templateWrapper h3 {
+	margin: 0;
+	padding: 0 0 3px 0;
+}
+.templateWrapper p {
+	font-size: 11px;
+	margin-bottom: 3px;
+}
+.templateWrapper p a {
+	font-size: 10px;
+}
