@@ -18,8 +18,11 @@
 	<% for location in @location.children %>
 		<div class="editPreview">
 			<img src="<%= location_icon(location.category) %>" />
-				<h2><%= link_to 'SKU', location_path(location) %> </h2>
-				<h3><%= link_to location.name, location_path(location) %></h3>	
+				<h2><%= link_to "SKU: #{location.barcodes.first.sku}", location_path(location) %> </h2>
+				<!--
+					TODO Make the asset count work
+				-->
+				<h3>Asset Count: <%= location.assets.count %></h3>	
 		</div>
 	<% end %>	
 <% end %>

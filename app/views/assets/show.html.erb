@@ -3,9 +3,9 @@
 <% content_for :breadcrumbs do %>
 	<%= link_to 'Locations', locations_path %> &gt; 
 	<% for page in @asset.location.ancestors.reverse %>  
-   	<%= link_to h(page.name), page %> &gt;  
+   		<%= link_to h(page.name), page %> &gt;  
  	<% end %> 
- 	<%= link_to @asset.location.name, location_path(@asset.location) %> &gt;
+ 		<%= link_to @asset.location.name, location_path(@asset.location) %> &gt;
 	<%= @asset.name %>
 <% end %>
 
@@ -46,6 +46,14 @@
 
 		</div><!-- options -->
 <% end %>
+
+
+
+<div id="assetShowNav">
+	<%= asset_nav_previous(@asset) %>
+	<%= asset_nav_next(@asset) %>
+	<div class="clear"></div>
+</div>
 
 <div id="assetOverview">
 

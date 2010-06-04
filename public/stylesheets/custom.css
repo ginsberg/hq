@@ -16,6 +16,31 @@
 	
 }
 
+#assetShowNav  {
+	margin-top:10px;
+}
+
+#assetShowNav a:link {
+	border:1px solid #E5E5E5;
+	color:#2173AF;
+	padding:2px 7px;
+	text-decoration:none;
+	font:13px/18px Arial,sans-serif;	
+}
+
+#assetShowNav a:hover {
+	background-color:#2173AF;
+	color:#FFFFFF;
+}
+
+#assetShowNav .previous {
+	float:left;
+}
+
+#assetShowNav .next {
+	float:right;
+}
+
 /* Debt */
 
 .red-highlight {

@@ -10,6 +10,9 @@ class Asset < ActiveRecord::Base
   
   after_create :generate_barcode
   
+  acts_as_list :scope => :location
+  
+  
   private
   
   def generate_barcode

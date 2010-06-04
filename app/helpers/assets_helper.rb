@@ -18,5 +18,17 @@ module AssetsHelper
     end
   end
   
+  def asset_nav_previous(asset)
+    if asset.higher_item
+      return link_to '&#171; Previous', asset_path(asset.higher_item), :class => "previous"
+    end    
+  end
+  
+  def asset_nav_next(asset)
+    if asset.lower_item
+      return link_to 'Next &#187;', asset_path(asset.lower_item), :class => "next"
+    end    
+  end
+  
   
 end
