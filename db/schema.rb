@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100528170511) do
+ActiveRecord::Schema.define(:version => 20100604192112) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20100528170511) do
   end
 
   create_table "barcodes", :force => true do |t|
-    t.integer  "sku",              :limit => 8
+    t.integer  "sku"
     t.integer  "barcodeable_id"
     t.string   "barcodeable_type"
     t.datetime "created_at"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20100528170511) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category"
   end
 
   create_table "periods", :force => true do |t|
