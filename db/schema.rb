@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100604202730) do
+ActiveRecord::Schema.define(:version => 20100604214509) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -99,8 +99,6 @@ ActiveRecord::Schema.define(:version => 20100604202730) do
     t.string   "data_content_type"
     t.integer  "data_file_size"
     t.datetime "data_updated_at"
-    t.string   "main_path"
-    t.string   "thumb_path"
     t.integer  "asset_id",          :null => false
   end
 
