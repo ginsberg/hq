@@ -5,6 +5,9 @@ class AssetsController < ApplicationController
   in_place_edit_for :asset, :name
   in_place_edit_for :asset, :description
   
+  navigation :assets
+  
+  
  def index
     @assets = Asset.all
   end

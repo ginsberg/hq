@@ -1,7 +1,7 @@
 class PeriodsController < ApplicationController
   
   before_filter :login_required
-  before_filter :sidebar, :current_period, :except => :create
+  before_filter :sidebar, :current_period, :except => [:create, :current]
   
 
   def show
@@ -17,6 +17,11 @@ class PeriodsController < ApplicationController
         redirect_to :back
       end
     end
+  end
+  
+  def current
+    period = Period.find(current_period)
+    redirect_to period_path(period)
   end
   
   private

@@ -89,7 +89,7 @@ table.tableHeader th.sectionTitle span a {
 	}
 #primaryNavs {
 	margin: 0 6px;
-	}
+	}	
 #primaryNavs ul {
 	margin: 0;
 	padding: 0 15px 0 0;
@@ -134,11 +134,11 @@ table.tableHeader th.sectionTitle span a {
 	padding-bottom: 8px;
 	text-shadow: none;
 	}
-#primaryNavs #currentSub a {
+#primaryNavs .selected a {
 	background-image: url("/images/site/navigation/round-blue/left-sub_on.gif");
 	border-width: 0;
 	}
-#primaryNavs #currentSub a span {
+#primaryNavs .selected a span {
 	background-image: url("/images/site/navigation/round-blue/right-sub_on.gif");
 	color: #06476f;
 	padding-bottom: 8px;
@@ -150,10 +150,10 @@ table.tableHeader th.sectionTitle span a {
 #primaryNavs a:hover span {
 	background-position: 100% -100px;
 	}
-#primaryNavs #current a:hover,#primaryNavs #currentSub a:hover {
+#primaryNavs #current a:hover,#primaryNavs .selected a:hover {
 	background-position: top left;
 	}
-#primaryNavs #current a:hover span,#primaryNavs #currentSub a:hover span {
+#primaryNavs #current a:hover span,#primaryNavs .selected a:hover span {
 	background-position: top right;
 	}
 #secondaryNavs ul {

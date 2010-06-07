@@ -1,4 +1,7 @@
 class LocationsController < ApplicationController
+  
+  navigation :assets
+  
   def index
     @locations = Location.all
   end

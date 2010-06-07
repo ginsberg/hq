@@ -76,3 +76,51 @@ span.tag a.delete  {
 span.tag a.delete:hover {
 	color:#3081DD;
 }
+
+/* SubNavs */
+
+#subNavs ul {
+	list-style: none;
+	}
+#subNavs li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+	}
+#subNavs a {
+	float: left;
+	background: url("images/site/navigation/left_both.gif") no-repeat left top;
+	padding: 0 3px 0 9px;
+	text-decoration: none;
+	font: bold 11px arial,helvetica,sans-serif;
+	line-height: 16px;
+	display: block;
+	}
+#subNavs a span {
+	float: left;
+	display: block;
+	background: url("/images/site/navigation/right_both.gif") no-repeat right top;
+	padding: 2px 9px 2px 0;
+	color: #828282;
+	}
+#subNavs a span {
+	float: none;
+	}
+#subNavs a:hover span {
+	color: #333;
+	}
+#subNavs .selected a {
+	background-image: url("/images/site/navigation/left_on_blue.png");
+	border-width: 0;
+	}
+#subNavs .selected a span {
+	background-image: url("/images/site/navigation/right_on_blue.png");
+	color:#FFFFFF;
+	padding-bottom: 8px;
+	}
+#subNavs .selected a:hover {
+	background-position: top left;
+	}
+#subNavs .selected a:hover span {
+	background-position: top right;
+	}

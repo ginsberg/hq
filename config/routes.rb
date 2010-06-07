@@ -1,34 +1,24 @@
 ActionController::Routing::Routes.draw do |map|
   
+  
   map.resources :scans
+  map.resources :locations
+  map.resources :assets, :member => {:rate => :post}
+  map.resources :sessions
+  map.resources :users
+  map.resources :periods, :has_one => [:budget, :debt]
+  map.resources :budget
+  map.resources :accounts
+  map.resources :debts
+  map.resources :transactions
   
   map.scan_files 'scan_files', :controller => 'scans', :action => 'process_files'
 
-  map.resources :locations
-
-  map.resources :assets, :member => {:rate => :post}
-
-  map.root :controller => :periods, :action => 'current_period'
-  
-  map.signup 'signup', :controller => 'users', :action => 'new'
-  
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
-  
   map.login 'login', :controller => 'sessions', :action => 'new'
+    
+  map.current_period 'current_period', :controller => 'periods', :action => 'current'
   
-  map.resources :sessions
-
-  map.resources :users
-
-  map.resources :periods, :has_one => [:budget, :debt]
-
-  map.resources :budget
-
-  map.resources :accounts
-  
-  map.resources :debts
-  
-  map.resources :transactions
   
   
   
