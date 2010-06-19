@@ -24,10 +24,12 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary| 
-    primary.item :Debt, '<span>Debt</span>', current_period_path 
-    primary.item :Budget, '<span>Budget</span>', current_period_path 
+    primary.item :money, '<span>Money</span>', current_period_path do |money|
+      money.item :debt, '<span>Locations</span>', current_period_path
+      money.item :budget, '<span>New Location</span>', current_period_path
+    end
     primary.item :assets, '<span>Assets</span>', locations_path do |assets|
-      assets.item :location, '<span>Location</span>', locations_path
+      assets.item :location, '<span>Locations</span>', locations_path
       assets.item :new_location, '<span>New Location</span>', new_location_path
     end
   end

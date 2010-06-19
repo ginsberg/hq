@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   navigation :assets
   
   def index
-    @locations = Location.all
+    @locations = Location.find(:all, :conditions => ['parent_id is ?', nil])
   end
   
   def show

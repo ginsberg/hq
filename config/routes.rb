@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
     
   map.current_period 'current_period', :controller => 'periods', :action => 'current'
   
+  map.root :controller => 'periods', :action => 'current'
+  
   
   
   

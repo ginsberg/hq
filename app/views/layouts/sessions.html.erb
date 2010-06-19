@@ -1,89 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<title><%= h(yield(:title) || "Untitled") %></title>
-	<script type="text/javascript" src="/javascripts/jquery-1.3.2.js"></script>
-	<script type="text/javascript" src="/javascripts/ui/ui.core.js"></script>
-	<script type="text/javascript" src="/javascripts/superfish.js"></script>
-	<script type="text/javascript" src="/javascripts/live_search.js"></script>
-	<script type="text/javascript" src="/javascripts/sidebar_menu.js"></script>
-	<script type="text/javascript" src="/javascripts/tooltip.js"></script>
-	<script type="text/javascript" src="/javascripts/cookie.js"></script>
-	<script type="text/javascript" src="/javascripts/ui/ui.sortable.js"></script>
-	<script type="text/javascript" src="/javascripts/ui/ui.draggable.js"></script>
-	<script type="text/javascript" src="/javascripts/ui/ui.resizable.js"></script>
-	<script type="text/javascript" src="/javascripts/ui/ui.dialog.js"></script>
-	<script type="text/javascript" src="/javascripts/custom.js"></script>
-	
-	<link href="/stylesheets/ui/ui.base.css" rel="stylesheet" media="all" />
-
-	<link href="/stylesheets/ui/ui.login.css" rel="stylesheet" media="all" />
-
-	<link href="/stylesheets/themes/black_rose/ui.css" rel="stylesheet" media="all" />
-
-	<link href="/stylesheets/themes/black_rose/ui.css" rel="stylesheet" title="style" media="all" />
-
-	<!--[if IE 6]>
-	<link href="css/ie6.css" rel="stylesheet" media="all" />
-	
-	<script src="js/pngfix.js"></script>
-	<script>
-	  /* Fix IE6 Transparent PNG */
-	  DD_belatedPNG.fix('.logo, .other ul#dashboard-buttons li a');
-
-	</script>
-	<![endif]-->
-	<!--[if IE 7]>
-	<link href="css/ie7.css" rel="stylesheet" media="all" />
-	<![endif]-->
+<title>Please login | Scott Hq</title>
+		<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8">
+		<link href="stylesheets/login.css" media="screen,projection" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-	<div id="page_wrapper">
-		<div id="page-header">
-			<div id="page-header-wrapper">
-				<div id="top">
-					<a href="#" class="logo" title="Admintasia V2.0">Admintasia V2.0</a>
-				
-				</div>
-			</div>
-		</div>
-<script type="text/javascript" src="/javascripts/ui/ui.tabs.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-	// Tabs
-	$('#tabs, #tabs2, #tabs5').tabs();
-});
-</script>
-		<div id="sub-nav">
-			<div class="page-title">
-				<h1>Login</h1>
-				<span>Welcome to the system</span>
-			</div>
-		<div id="top-buttons">
-			
-			<div id="dialog" title="Dialog Title">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
-			<div id="modal_confirmation" title="An example modal title ?">
-				<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div id="page-layout">
-			<div id="page-content">
-				<div id="page-content-wrapper">
-					
-					<%= yield %>
-
-				
 
 
-				</div>
-				<div class="clear"></div>
-			</div>
-		</div>
+
+<div id="additional">
+	
+</div>
+
+
+
+<div id="formWrapper">
+	
+	<div id="formCasing">
+
+	<h1>Scott Hq</h1>
+
+	<div id="loginForm">
+	
+	<%= yield %>
+
+	
 	</div>
+
+	
+	
+	</div>
+	
+	<div id="formFooter"></div>
+
+</div>
+
+<!--CMWEB5-->
+
 </body>
 </html>
+

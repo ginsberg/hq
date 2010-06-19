@@ -1,12 +1,31 @@
 <% form_for @location do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :parent_id %><br />
-    <%= f.collection_select :parent_id, Location.all(:order => "name"), :id, :name, :include_blank => true %> 
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+
+
+	<h3 class="top">Location Details</h3>
+				<p class="medium">This is the address your clients can use to log in to their account. You may want to use your company name but can only enter letters (a-z) and numbers (0-9) with no spaces or punctuation except '-'. You don't need to enter 'www.'</p>
+<div class="formContainer">
+	
+	<div class="clearfix">
+		<label>Parent Location</label>
+		<%= f.collection_select :parent_id, Location.all(:order => "name"), :id, :name, :include_blank => true %>
+	</div>
+</div>	
+
+<h3 class="top">Location Details</h3>
+<p class="medium">This is the address your clients can use to log in to their account. You may want to use your company name but can only enter letters (a-z) and numbers (0-9) with no spaces or punctuation except '-'. You don't need to enter 'www.'</p>							
+
+<div class="formContainer">
+
+	<div class="clearfix">
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+	
+</div>
+	<a onclick="submitForm('#editAccountForm'); return false;" href="#" class="greybutton"><span><img height="16" width="16" alt="" src="/images/site/buttons/icon-tickcase.gif">Save</span></a>
+	<div class="clearButton"></div>	
+	
+	<% end %>
+	
+
