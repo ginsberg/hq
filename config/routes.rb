@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.resources :scans
-  map.resources :locations
+  map.resources :locations, :has_many => :barcodes
   map.resources :assets, :member => {:rate => :post}
   map.resources :sessions
   map.resources :users

@@ -1,0 +1,17 @@
+<% title 'Barcodes Export' %>
+
+<% content_for :breadcrumbs do %>
+	<%= link_to 'Locations', locations_path %> &gt; 
+	<% for page in @location.ancestors.reverse %>  
+   		<%= link_to h(page.name), page %> &gt;  
+ 	<% end %> 
+ 		<%= link_to @location.name, location_path(@location) %> &gt;
+	Barcodes Export
+<% end %>
+
+<div class="code">
+<% for asset in @assets %>
+	<%= asset.barcodes.first.sku %>,
+<% end %>
+
+</div>

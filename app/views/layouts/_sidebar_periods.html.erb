@@ -6,16 +6,5 @@
 		<div class="period_id"><%= current_period %></div>
 		<div class="text"><a href="/periods/<%= current_period %>">Current Period</a></div>
 	</div>
-	
-
-			<dl class="icon-menu">
-				<% for period in periods %>
 				
-				<dt><a href="gallery.aspx"><img src="/images/site/icons/calendar_view_day.png" width="16" height="16" alt="Check out the template gallery" /></a></dt>
-				<dd><a href="gallery.aspx">Period <%= period.id %></a></dd>
-				<dd class="last"><%= period.name %></dd>
-				
-				<% end %>
-			</dl>
-
 </div>
