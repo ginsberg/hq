@@ -12,6 +12,32 @@
 	Some text will go here
 <% end %>
 
+<% content_for :sidebar do %>
+		<div id="options">
+
+			<div class="bghighlight">
+				<h3 class="sidebar">Process Images</h3>
+			</div><!-- bghighlight -->
+			
+			<p>To batch process images for this location, place all images in public/system/assets and run the following rake task:</p>
+			
+			<div class="code">
+				<pre>rake process_images[<%= @location.id %>]</pre>
+			</div>
+			
+			<% unless @location.assets.empty? %>
+			
+			<div class="bghighlight">
+				<h3 class="sidebar">Export barcodes</h3>
+			</div><!-- bghighlight -->
+			
+			<p><%= link_to 'Generate', location_barcodes_path(@location) %> the barcode data which can be copied into 'labels and address'</p>
+			
+			<% end %>
+			
+		</div><!-- options -->
+<% end %>
+
 	
 <% unless @location.children.blank? %>
 	<h2>Sub Locations</h2>		
