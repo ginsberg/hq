@@ -11,6 +11,13 @@
 <% end %>
 
 
+<div id="assetShowNav">
+	<a href="/periods/<%= @period.id - 1 %>/debt" class="previous">&#171; Period <%= @period.id - 1 %></a>
+	<a href="/periods/<%= @period.id + 1 %>/debt" class="next">Period <%= @period.id + 1 %> &#187;</a>
+	<div class="clear"></div>
+</div>
+
+
 	<div class="dataHighlight">
 		<table cellpadding="0" cellspacing="0" width="100%" class="goalSummary">
 	         <tr>
