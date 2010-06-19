@@ -49,6 +49,8 @@
 		
 	<% for account in @accounts %>
 	
+	<% if account_balance(account.id, @period) != 0  %>
+	
 		<h3><%= account.name %> Account 
 			<a href="#" onclick="Effect.toggle('form-<%= account.id %>', 'blind'); return false;">
 				<img src="/images/site/icons/add.png">
@@ -120,6 +122,8 @@
 		</table>
 	
 		<br />
+		
+		<% end %>
 		
 	<% end %>
 
