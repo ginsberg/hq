@@ -25,6 +25,16 @@
 				<pre>rake process_images[<%= @location.id %>]</pre>
 			</div>
 			
+			<div class="bghighlight">
+				<h3 class="sidebar">Location SKU</h3>
+			</div><!-- bghighlight -->
+			
+			<p>Use the data below to generate a barcode for this location:</p>
+			
+			<div class="code">
+					  <pre><%= @location.barcodes.first.sku %></pre>
+			</div>
+			
 			<% unless @location.assets.empty? %>
 			
 			<div class="bghighlight">

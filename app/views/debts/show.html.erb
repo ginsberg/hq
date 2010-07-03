@@ -1,4 +1,4 @@
-<% title "Period #{@period.id}" %>
+<% title "Debt >> Period #{@period.id}" %>
 
 <% content_for :breadcrumbs do %>
 	<%= link_to "Periods", periods_path, :title => "List of Periods" %> >
@@ -9,6 +9,8 @@
 <% content_for :titleSummary do %>
 	<%= @period.start.to_s(:date_medium) %> - <%= @period.finish.to_s(:date_medium) %>
 <% end %>
+
+
 
 
 <div id="assetShowNav">

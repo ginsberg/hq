@@ -1,60 +1,85 @@
-<% title "budget" %>
+<% title "Budget >> Period #{@period.id}"%>
 
-<% content_for :breadcrumb do %>
+<% content_for :breadcrumbs do %>
 	<%= link_to "Periods", periods_path, :title => "List of Periods" %> >
 	<%= link_to "Period # #{@period.id}", period_path(@period), :title => "List of Periods" %> >
 	Budget	
 <% end %>
 
-<div class="hastable">
+<% content_for :titleSummary do %>
+	<%= @period.start.to_s(:date_medium) %> - <%= @period.finish.to_s(:date_medium) %>
+<% end %>
+
+	<div id="assetShowNav">
+		<a href="/periods/<%= @period.id - 1 %>/debt" class="previous">&#171; Period <%= @period.id - 1 %></a>
+		<a href="/periods/<%= @period.id + 1 %>/debt" class="next">Period <%= @period.id + 1 %> &#187;</a>
+		<div class="clear"></div>
+	</div>
+
+	<div class="dataHighlight">
+		<table cellpadding="0" cellspacing="0" width="100%" class="goalSummary">
+	         <tr>
+	            <td nowrap><div id="peopleClicked" class="red-highlight"><%= quid(@budget_total) %></div></td>
+	            <td width="50%" class="goalDescription"><h2>outgoings</h2>Total of all budgets</td>
+	            <td nowrap><div class="secondary" id="totalClicks"><%= quid(@period.budget.wages) %></div></td>
+	            <td width="50%" class="goalDescription"><h2>Wages</h2>Total income this period</td>
+	         </tr>
+	         <tr class="lastGoal">
+	            <td nowrap><div class="secondary" id="clicksPerPerson"><%= quid(@budget_surplus) %></div></td>
+	            <td width="50%" class="goalDescription"><h2>Surplus</h2>Wages left after budget deductions</td>
+	            <td nowrap></td>
+	            <td width="50%" class="goalDescription"></td>
+			</tr>
+	   </table>
+	</div>
+
+<div class="clear"></div>
+
 	
-	<div class="content-box">
-			<div class="two-column">
-				<div class="column">
+<% for account in @accounts %>
+	
+	<h3><%= account.name %> Account 
+		<a href="#" onclick="Effect.toggle('form-<%= account.id %>', 'blind'); return false;">
+			<img src="/images/site/icons/add.png">
+		</a> 
+	</h3>
 					
-					<div class="content-box content-box-header">
-						<div class="content-box-wrapper">
-							<h3>Period # <%= @period.id %></h3>
-							<p><%= @period.start.to_s(:date_medium) %> - <%= @period.finish.to_s(:date_medium) %></p>
-							
-							<table cellspacing="0">
-								<tbody>
-									<tr>
-										<td><h2><%= quid(@budget_total) %></h2>Outgoings</td>
-										<td><h2><%= quid(@period.budget.wages) %></h2>Wages</td>
-										<td><h2><%= quid(@budget_surplus) %></h2>Surplus</td>
-									</tr>
-								</tbody>
-							</table>
-						
-						</div>
-					</div>
-						
-				</div>
-				<div class="column column-right">
-					
-				</div>
-			</div>
-			<div class="clear"></div>
+		<div  id="form-<%= account.id %>" style="display:none;">	
+				
+		<% form_for @transaction do |f| %>
+			<label  class="desc">
+				Name
+			</label>
+			<%= f.text_field :name, :maxlength => 20 %>
+			<label  class="desc">
+				Amount
+			</label>
+			<%= f.text_field :amount, :maxlength => 6 %>
+			<label  class="desc">
+				Transaction Date
+			</label>
+			<%= f.date_select :transaction_date %>
+			
+			<%= f.hidden_field :period_id, :value => @period.id %>
+			<%= f.hidden_field :budget_id, :value => @period.budget.id %>
+			<%= f.hidden_field :account_id, :value => account.id %>
+
+			<button class="ui-state-default float-right ui-corner-all ui-button" type="submit"> Submit</button>
+
+		<% end %>
 		</div>
 
-
-	<% for account in @accounts %>
-<div class="inner-page-title">
-	<h3><%= account.name %> Account</h3>
-</div>
-	<table>
-		<thead>
-		<tr>
+	<table cellpadding="0" cellspacing="0" width="100%" class="tableHeader">
+		
+		<tr class="noHighlight">
+			<th class="headerLeft">#</th>
 			<th>Bill</th>
 			<th>Transaction / Due Date</th>
-			<th>Amount</th>
-			<th></th>
+			<th class="headerRight" style="text-align:right;">Amount</th>
 		</tr>
-		</thead>
-		<tbody>
+		
 		<% for transaction in account.transactions.budget_scope(@period.budget.id) %>
-		<tr <% if transaction.payment_date == nil %> class="notPosted" <% end %> >
+		<tr <% if transaction.payment_date == nil %> class="red-highlight" <% end %> >
 	  		<td><%= transaction.name %></td>
 			<td><%= transaction.transaction_date.to_s(:date_medium) %></td>
 			<td><%= quid(transaction.amount) %></td>
@@ -75,74 +100,10 @@
 			<td><%= quid(budget_to_pay_total(account.id, @period)) %></td>
 		</tr>
 		<tr>
-		</tbody>
+
 	</table>
-	
-	<br />
-				<div class="portlet ui-widget ui-widget-content ui-helper-clearfix ui-corner-all form-container">
-					<div class="portlet-header ui-widget-header">Add transaction<span class="ui-icon ui-icon-circle-arrow-s"></span></div>
-					<div class="portlet-content" style="display:none;" >
-						
-						<link href="/stylesheets/ui/ui.datepicker.css" rel="stylesheet" media="all" />
-				<script type="text/javascript" src="/javascripts/ui/ui.datepicker.js"></script>
-					<script type="text/javascript">
-					$(function() {
-						$('#datepicker_<%= account.id %>').datepicker({
-							numberOfMonths: 4,
-							changeYear: true
-						});
-					});
-					</script>
-
-							<% form_for @transaction do |f| %>
-							  <%= f.error_messages %>
-							<ul>
-
-								<li>
-									<div class="float-left">
-										<span>
-												<label  class="desc">
-													Name
-												</label>
-											<%= f.text_field :name, :maxlength => 15 %>
-										</span>
-									</div>
-
-									<div class="float-left">
-										<span>
-												<label  class="desc">
-													Amount
-												</label>
-											<%= f.text_field :amount, :maxlength => 6 %>
-										</span>
-									</div>
-
-									<div class="float-left">
-										<span>
-											<label  class="desc">
-												Due Date	
-											</label>
-											<input type="text" name="transaction[transaction_date]" id="datepicker_<%= account.id %>" />
-										</span>
-									</div>
-								</li>
-										<%= f.hidden_field :period_id, :value => @period.id %>
-										<%= f.hidden_field :budget_id, :value => @period.id %>
-										<%= f.hidden_field :account_id, :value => account.id %>
-										
-
-								<li class="buttons">
-									<button class="ui-state-default float-right ui-corner-all ui-button" type="submit"> Submit</button>
-								</li>
-							</ul>
-							<% end %>
-					</div>
-				</div>
-				
-				<br /><br />
 
 <% end %>
 
-</div>
 
 

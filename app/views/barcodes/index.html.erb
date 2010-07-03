@@ -1,19 +1,7 @@
 <% title 'Barcodes Export' %>
 
 <% content_for :sidebar do %>
-		<div id="options">
-
-			<div class="bghighlight">
-				<h3 class="sidebar">Barcode Template</h3>
-			</div><!-- bghighlight -->
-			
-			<p>To batch process images for this location, place all images in public/system/assets and run the following rake task:</p>
-			
-			<div class="code">
-				<pre>rake process_images[<%= @location.id %>]</pre>
-			</div>
-			
-		</div><!-- options -->
+		
 <% end %>
 
 <% content_for :breadcrumbs do %>
@@ -28,8 +16,8 @@
 <div class="code">
 <% for asset in @assets %>
 	<%= asset.barcodes.first.sku %>,
-	<%= asset.location.id %>,
-	<%= asset.position %><br />
+	<%= asset.position %>,
+	<%= asset.location.id %><br />
 <% end %>
 
 </div>
