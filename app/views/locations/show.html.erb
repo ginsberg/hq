@@ -4,9 +4,11 @@
 	<%= link_to 'Locations', locations_path %> &gt; 
 	<% for page in @location.ancestors.reverse %>  
    	<%= link_to h(page.name), page %> &gt;  
- 	<% end %>
- 	<%= @location.name %>
+ 	<% end %> 
+ 	<%= @location.name %> 
 <% end %>
+
+
 
 <% content_for :titleSummary do %>
 	Some text will go here

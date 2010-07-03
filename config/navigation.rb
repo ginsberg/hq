@@ -28,7 +28,8 @@ SimpleNavigation::Configuration.run do |navigation|
       money.item :debt, '<span>Locations</span>', current_period_path
       money.item :budget, '<span>New Location</span>', current_period_path
     end
-    primary.item :assets, '<span>Assets</span>', locations_path do |assets|
+    primary.item :assets, '<span>Assets</span>', assets_path do |assets|
+      assets.item :location, '<span>Home</span>', assets_path
       assets.item :location, '<span>Locations</span>', locations_path
       assets.item :new_location, '<span>New Location</span>', new_location_path
     end

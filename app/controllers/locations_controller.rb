@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   
   navigation :assets
+  before_filter :login_required
   
   def index
     @locations = Location.find(:all, :conditions => ['parent_id is ?', nil])

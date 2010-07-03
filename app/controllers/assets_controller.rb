@@ -10,6 +10,7 @@ class AssetsController < ApplicationController
   
  def index
     @assets = Asset.all
+    @tags = Asset.tag_counts
   end
   
   def show

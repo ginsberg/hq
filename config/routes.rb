@@ -11,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts
   map.resources :debts
   map.resources :transactions
+  map.resources :search
+  
+  map.sku_find 'search/sku_find', :controller => 'search', :action => 'sku_find'
   
   map.scan_files 'scan_files', :controller => 'scans', :action => 'process_files'
 

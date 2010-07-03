@@ -1,5 +1,6 @@
 class ScansController < ApplicationController
  
+  before_filter :login_required
   
   def index
     @scans = Scan.all

@@ -1,19 +1,5 @@
-<% title "Assets" %>
+<% title "Asset Management System Home" %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-  </tr>
-  <% for asset in @assets %>
-    <tr>
-      <td><%=h asset.name %></td>
-      <td><%=h asset.location_id %></td>
-      <td><%= link_to "Show", asset %></td>
-      <td><%= link_to "Edit", edit_asset_path(asset) %></td>
-      <td><%= link_to "Destroy", asset, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
+<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
   <% end %>
-</table>
-
-<p><%= link_to "New Asset", new_asset_path %></p>
