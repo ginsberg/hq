@@ -71,13 +71,7 @@
 
 <% unless @location.assets.blank? %>
 	<h2>Assets</h2>
-		<% for asset in @location.assets %>
-			<div class="editPreview">
-				<%= image_tag asset.scans.first.data.url(:thumb_wide) %>
-				<h2>SKU: <%= link_to asset.barcodes.first.sku, asset %> </h2>
-				<h3><%= ratings_for asset, :static, :small => true, :dimension => :quality %></h3>	
-			</div>	
-		<% end %>
+			<%= render :partial => "/assets/asset", :collection => @location.assets %>
 		<% else %>
 			<div id="blankSlateIntro">
 				<h1><a href="/createsend/step1.aspx">Add an asset</a></h1>

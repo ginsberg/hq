@@ -1,10 +1,11 @@
 class BudgetsController < ApplicationController
   
   before_filter :login_required
-  before_filter :sidebar, :current_period
+  before_filter :current_period
   
  
    def show
+     @period = Period.find(params[:period_id])
      @transaction = Transaction.new
      @accounts = Account.find(:all, :conditions => ['debt is ?', nil])
      @budget_total = Budget.budget_total(@period.budget)

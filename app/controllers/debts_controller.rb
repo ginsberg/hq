@@ -1,10 +1,11 @@
 class DebtsController < ApplicationController
   
   before_filter :login_required
-  before_filter :sidebar, :current_period
+  before_filter :current_period
   
   
   def show
+    @period = Period.find(params[:period_id])
      @debt = @period.debt
      @transaction = Transaction.new
      @categories = Category.find(:all)

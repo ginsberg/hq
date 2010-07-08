@@ -15,6 +15,23 @@
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
 
+/* Asset Index */
+
+#latestAssets {
+}
+
+#latestAssets img {
+	margin: 0 5px 5px 0;
+}
+
+#featuredAsset {
+	float:right;
+}
+
+#featuredAsset p {
+	clear:both;
+}
+
 /* Asset Show */
 
 #assetOverview {

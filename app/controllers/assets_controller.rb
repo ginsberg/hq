@@ -11,6 +11,8 @@ class AssetsController < ApplicationController
  def index
     @assets = Asset.all
     @tags = Asset.tag_counts
+    @latestAssets = Asset.find(:all, :limit => 12, :order => 'created_at DESC')
+    @featuredAsset = Asset.find(:first, :conditions => [''], :order => "RAND()")
   end
   
   def show
@@ -51,6 +53,10 @@ class AssetsController < ApplicationController
     end
   end
   
+  def tag
+    @assets = Asset.find_tagged_with(params[:id])
+    flash[:notice] = "Below are your search results for <strong>#{params[:id]}</strong>"
+  end
   
   def remove_tag
      @asset = Asset.find(params[:id])

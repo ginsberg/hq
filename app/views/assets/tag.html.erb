@@ -1,0 +1,13 @@
+<% title "Search Results" %>
+
+<% content_for :breadcrumbs do %>
+	<%= link_to 'Assets', assets_path %> &gt; 
+	Search Results
+<% end %>
+
+<% content_for :titleSummary do %>
+	Your search returned <%=  pluralize(@assets.length, 'result') %>
+<% end %>
+
+ <%= render :partial => "/assets/asset", :collection => @assets %>
+

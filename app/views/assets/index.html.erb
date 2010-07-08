@@ -1,5 +1,34 @@
-<% title "Asset Management System Home" %>
+<% title "S.H.A.M." %>
 
-<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
-    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+<% content_for :titleSummary do %>
+	Scott Holland Asset Management
+<% end %>
+
+<% content_for :sidebar do %>
+	
+	
+	<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+	    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+	<% end %>
+	
+<% end %>
+
+
+
+<div id="featuredAsset">
+
+	<%= link_to (image_tag @featuredAsset.scans.first.data.url(:featured)), asset_path(@featuredAsset) %>
+	
+	<p><%= @featuredAsset.id %><p>
+	
+</div>
+
+<div id="latestAssets">
+
+  <% for asset in @latestAssets %>
+    <%= link_to (image_tag asset.scans.first.data.url(:thumb)), asset_path(asset) %>
   <% end %>
+
+
+</div>
+					

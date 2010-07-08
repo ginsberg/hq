@@ -1,10 +1,11 @@
 class PeriodsController < ApplicationController
   
   before_filter :login_required
-  before_filter :sidebar, :current_period, :except => [:create, :current]
+  before_filter :current_period, :except => [:create, :current]
   
 
   def show
+    @period = Period.find(params[:id])
     @last_period = Period.find(:first, :order => 'id DESC').finish + 1.day
     @new_period = Period.new
   end

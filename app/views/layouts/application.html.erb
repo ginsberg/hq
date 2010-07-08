@@ -116,6 +116,8 @@
 											</p>
 										</div>
 
+										<%= flash_helper %>
+
 										<%= yield %>
 
 								</div><!-- leftcol -->
@@ -123,21 +125,6 @@
 								<div id="rightcol">
 									
 										<%= yield :sidebar %>
-									
-										<% if 	controller.controller_name  ==  "debts" or 
-												controller.controller_name  == "periods" or
-												controller.controller_name  == "budget"
-
-											 %>
-
-										<%= render :partial => "layouts/sidebar_periods", 
-										:locals => { 	:period_id => @period.id, 
-														:periods => @periods,
-														:current_period => @current_period,
-														:current_controller => yield(:title)
-														} %>
-
-										<% end %>
 
 								</div><!-- rightcol -->
 									

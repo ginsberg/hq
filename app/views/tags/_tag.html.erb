@@ -1,5 +1,5 @@
 <span class="tag">
-	<%= link_to tag, assets_path %> 
+	<%= link_to tag, { :action => :tag, :id => tag }  %> 
 	<%=
 		link_to_remote( "X", :confirm => "Are you sure you want to remove the '#{tag}' tag?", :url =>{:action => :remove_tag, :id => @asset.id, :tag => tag}, :html => {:class => "delete"})
 	%>

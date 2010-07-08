@@ -1,0 +1,5 @@
+<div class="editPreview">
+	<%= image_tag asset.scans.first.data.url(:thumb_wide) %>
+	<h2>SKU: <%= link_to asset.barcodes.first.sku, asset %> </h2>
+	<h3><%= ratings_for asset, :static, :small => true, :dimension => :quality %></h3>	
+</div>
