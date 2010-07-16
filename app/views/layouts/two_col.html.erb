@@ -1,0 +1,41 @@
+<div id="mainContentWrapper">
+
+	<div class="twocol">
+			
+		<div id="content">
+
+			<div id="leftcol">
+				
+				<p class="bread">
+					<%= yield :breadcrumbs %>
+				</p>
+				
+					<div style="border-bottom: 1px solid #EEE; padding-bottom: 0; margin-bottom:10px;">
+						<div class="campaignActions" style="margin-top: 24px;">
+							<%= yield :campaignActions %>
+						</div>
+						<h1 id="campaignTitle"><%= h(yield(:title) || "Untitled") %></h1>
+						<p class="titleSummary" style="padding-bottom: 10px !important;">
+							<%= yield :titleSummary %>
+						</p>
+					</div>
+
+					<%= flash_helper %>
+
+					<%= yield %>
+
+			</div><!-- leftcol -->
+
+			<div id="rightcol">
+				
+					<%= yield :sidebar %>
+
+			</div><!-- rightcol -->
+				
+				<div class="clear"></div>		
+		
+		</div><!-- content -->
+
+	</div><!-- twocol -->
+
+</div><!--mainContentWrapper -->

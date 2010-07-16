@@ -1,0 +1,16 @@
+<% content_for :layoutType do %>
+
+<div id="content">
+	
+	<div id="fixedContent">
+		
+		<%= yield %>
+		
+		<div class="clear"></div>		
+	
+	</div>
+						
+</div><!--content -->
+
+<% end %>
+<%= render :file => 'layouts/application' %>

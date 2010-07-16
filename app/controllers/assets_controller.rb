@@ -13,6 +13,7 @@ class AssetsController < ApplicationController
     @tags = Asset.tag_counts
     @latestAssets = Asset.find(:all, :limit => 15, :order => 'created_at DESC')
     @featuredAsset = Asset.find(:first, :conditions => [''], :order => "RAND()")
+    render :layout => "fixed"
   end
   
   def show
