@@ -19,7 +19,7 @@
 
 	<%= link_to (image_tag @featuredAsset.scans.first.data.url(:featured)), asset_path(@featuredAsset) %>
 	
-	<p><%= @featuredAsset.id %><p>
+	<p><%= @featuredAsset.name %> added on <%= @featuredAsset.created_at.to_s(:date_medium) %><p>
 	
 </div>
 

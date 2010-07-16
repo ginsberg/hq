@@ -11,7 +11,7 @@ class AssetsController < ApplicationController
  def index
     @assets = Asset.all
     @tags = Asset.tag_counts
-    @latestAssets = Asset.find(:all, :limit => 12, :order => 'created_at DESC')
+    @latestAssets = Asset.find(:all, :limit => 15, :order => 'created_at DESC')
     @featuredAsset = Asset.find(:first, :conditions => [''], :order => "RAND()")
   end
   
