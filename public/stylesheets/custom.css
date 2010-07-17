@@ -1,3 +1,111 @@
+/* 960 Grid */
+/* The grid for the homepage is based on the 1kb grid system*/
+
+#home .grid_1 { width:60px; }
+#home .grid_2 { width:140px; }
+#home .grid_3 { width:220px; }
+#home .grid_4 { width:300px; }
+#home .grid_5 { width:380px; }
+#home .grid_6 { width:460px; }
+#home .grid_7 { width:540px; }
+#home .grid_8 { width:620px; }
+#home .grid_9 { width:700px; }
+#home .grid_10 { width:780px; }
+#home .grid_11 { width:860px; }
+#home .grid_12 { width:940px; }
+
+#home .column {
+	margin: 0 10px;
+	overflow: hidden;
+	float: left;
+	display: inline;
+}
+#home .row {
+	width: 960px;
+	margin: 0 auto;
+	margin-bottom:20px;
+	overflow: hidden;
+}
+#home .row .row {
+	margin: 0 -10px;
+	width: auto;
+	display: inline-block;
+}
+
+/* Asset Homepage */
+
+#latestAssets {
+	background: #E4F2FB;
+}
+
+#latestAssets h3 {
+	padding: 0 10px 0 10px;
+	margin-bottom:0;
+}
+
+#latestAssets img {
+	margin: 10px 10px 10px 10px;
+}
+
+/* Asset Homepage >> Featured Asset */
+
+#featuredAsset {
+	float:right;
+}
+
+#featuredAsset p {
+	clear:both;
+}
+
+.overlayCaption { 
+	width: 620px; 
+	height: 320px; 
+	float:left; 
+	background:#161613; 
+	overflow: hidden; 
+	position: relative; 
+}
+
+.overlayCaption img { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	border: 0; 
+}
+
+.overlayCaption h3 { 
+	padding:10px; 
+	margin:0;
+	color:#000000; 
+	font-weight:bold; 
+	font-size:20px
+}
+.overlayCaption p { 
+	padding:0 10px 10px 10px; 
+	color:#000000; 
+	font-weight:bold; 
+	font:10pt "Lucida Grande", Arial, sans-serif; 
+}
+				
+.boxcaption { 
+	float: left; 
+	margin-top:250px;
+	position: absolute; 
+	background: #E4F2FB; 
+	height: 100px; 
+	width: 100%; 
+	opacity: .3; 
+	/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	}
+
+/* Asset Homepage >> Stats */
+
+#home #stats {
+}
+
 /* Search */
 
 #searchBox {
@@ -15,22 +123,6 @@
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
 
-/* Asset Index */
-
-#latestAssets {
-}
-
-#latestAssets img {
-	margin: 0 5px 5px 0;
-}
-
-#featuredAsset {
-	float:right;
-}
-
-#featuredAsset p {
-	clear:both;
-}
 
 /* Asset Show */
 

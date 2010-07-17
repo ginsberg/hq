@@ -8,7 +8,7 @@ class Scan < ActiveRecord::Base
           :thumb_wide=> "145x89#",
           :large_thumb=> "120x120#",
           :small  => "150x150>",
-          :featured  => "465x238#",
+          :featured  => "630x320#",
           :medium  => "475x475>",
           :large  => "800x800>" }
        

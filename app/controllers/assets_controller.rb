@@ -10,9 +10,13 @@ class AssetsController < ApplicationController
   
  def index
     @assets = Asset.all
+    @assetCount = Asset.count
+    @scanCount = Scan.count
+    @locationCount = Location.count
     @tags = Asset.tag_counts
-    @latestAssets = Asset.find(:all, :limit => 15, :order => 'created_at DESC')
+    @latestAssets = Asset.find(:all, :limit => 9, :order => 'created_at DESC')
     @featuredAsset = Asset.find(:first, :conditions => [''], :order => "RAND()")
+    @latestSets = Location.find(:all, :conditions => ['category = 4'], :limit => 4 )
     render :layout => "fixed"
   end
   

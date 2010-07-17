@@ -4,9 +4,18 @@
 	
 	<div id="fixedContent">
 		
+		<div id="home">
+		
+		<div class="row">
+			<div class="column grid_12">
+			<h1 id="campaignTitle"><%= h(yield(:title) || "Untitled") %></h1>
+			</div>
+		</div>
 		<%= yield %>
 		
-		<div class="clear"></div>		
+		<div class="clear"></div>
+		
+		</div>		
 	
 	</div>
 						
