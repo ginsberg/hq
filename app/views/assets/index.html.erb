@@ -1,98 +1,93 @@
 <% title "Asset Management System" %>
 
-	<div class="row">
-		<div class="column grid_8">
-			<div class="overlayCaption">
-				<%= link_to (image_tag @featuredAsset.scans.first.data.url(:featured)), asset_path(@featuredAsset) %>
-					<div class="cover boxcaption">
-						<h3><%= @featuredAsset.name %></h3>
-						<p><%= @featuredAsset.description %></p>
-					</div>
+<div class="row">
+	
+	<div class="column grid_8">
+		<div class="overlayCaption">
+			<%= link_to (image_tag @featuredAsset.scans.first.data.url(:featured)), asset_path(@featuredAsset) %>
+			<div class="cover boxcaption">
+				<h3><%= @featuredAsset.name %></h3>
+				<p><%= @featuredAsset.description %></p>
 			</div>
 		</div>
+	</div>
 	
-		<div id="latestAssets" class="column grid_4">
-			<h3>Latest Assets</h3>
+	<div id="latestAssets" class="column grid_4">
+		<h3>Latest Assets</h3>
 			<% for asset in @latestAssets %>
 		    <%= link_to (image_tag asset.scans.first.data.url(:thumb)), asset_path(asset) %>
-		  <% end %>
-		</div>
+		  	<% end %>
 	</div>
-	
-	<div class="row">
-		<div id="stats" class="column grid_4">
-			
-			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">
-				<tbody>
-					<tr class="noHighlight">
-						<th width="100%" class="headerLeft"><span>Asset Stats</span></th>
-						<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
-					</tr>
-
-					<tr class="dashRow">
-						<td width="100%" class="rowLeft">Assets</td>
-						<td nowrap="" class="rowRight"><%= @assetCount %></td>
-					</tr>
-					
-					<tr class="dashRow">
-						<td width="100%" class="rowLeft">Files</td>
-						<td nowrap="" class="rowRight"><%= @scanCount %></td>
-					</tr>
-					
-					<tr class="dashRow">
-						<td width="100%" class="rowLeft">Events</td>
-						<td nowrap="" class="rowRight">#</td>
-					</tr>
-					
-					<tr class="dashRow">
-						<td width="100%" class="rowLeft">Locations</td>
-						<td nowrap="" class="rowRight"><%= @locationCount %></td>
-					</tr>
-
-				</tbody>
-			</table>	
-	</div>
-	
-		<div id="tagCloud" class="column grid_4">
-			<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
-			    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
-			<% end %>
-		</div>
 		
-		<div id="latestEvents" class="column grid_4">
-			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">
-				<tbody>
-					
-					<tr class="noHighlight">
-						<th width="100%" class="headerLeft"><span>Latest Sets</span></th>
-						<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
-					</tr>
-					
-					<% if !@latestSets.blank? %>
-					  <% for set in @latestSets %>
-					
-						<tr class="dashRow">
-							<td width="100%" class="rowLeft"><a href="#"><%= link_to set.name, location_path(set) %></a> <p>A little description of this event</p></td>
-							<td nowrap="" class="rowRight">
-								<%= link_to (image_tag set.assets.first.scans.first.data.url(:thumb), :size => "40x40"), location_path(set) %>
-							</td>
-						</tr>
-					    
-					  <% end %>
-					<% else %>
-					
-					<tr class="dashRow">
-						<td width="100%" class="rowLeft" colspan="2"><p>No sets yet</p></p></td>
-					</tr>
-					  
-					<% end %>
-					
-
-				</tbody>
-			</table>
-		</div>
+</div><!--row-->
 	
-	</div>
+<div class="row">
+	
+	<div id="stats" class="column grid_4">
+			<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">
+			<tbody>
+				<tr class="noHighlight">
+					<th width="100%" class="headerLeft"><span>Asset Stats</span></th>
+					<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				</tr>
+
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft">Assets</td>
+					<td nowrap="" class="rowRight"><%= @assetCount %></td>
+				</tr>
+				
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft">Files</td>
+					<td nowrap="" class="rowRight"><%= @scanCount %></td>
+				</tr>
+				
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft">Events</td>
+					<td nowrap="" class="rowRight">#</td>
+				</tr>
+					
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft">Locations</td>
+					<td nowrap="" class="rowRight"><%= @locationCount %></td>
+				</tr>
+		</tbody>
+		</table>	
+	</div><!-- stats -->
+	
+	<div id="tagCloud" class="column grid_4">
+		<% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+		    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+		<% end %>
+	</div><!--tagCloud-->
+		
+	<div id="latestEvents" class="column grid_4">
+		<table width="100%" cellspacing="0" cellpadding="0" class="tableHeader">
+			<tbody>
+				<tr class="noHighlight">
+					<th width="100%" class="headerLeft"><span>Latest Sets</span></th>
+					<th nowrap="" class="headerRight">&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				</tr>
+				<% if !@latestSets.blank? %>
+			 	<% for set in @latestSets %>
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft"><a href="#"><%= link_to set.name, location_path(set) %></a></td>
+					<td nowrap="" class="rowRight">
+						<% if !set.assets.blank? %>
+						<%= link_to (image_tag set.assets.first.scans.first.data.url(:thumb), :size => "40x40"), location_path(set) %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+				<% else %>
+				<tr class="dashRow">
+					<td width="100%" class="rowLeft" colspan="2"><p>No sets yet</p></p></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div><!--latestEvents-->
+	
+</div><!--row-->
 
 
 

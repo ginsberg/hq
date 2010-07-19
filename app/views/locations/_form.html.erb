@@ -1,19 +1,8 @@
 <% form_for @location do |f| %>
   <%= f.error_messages %>
 
-
-	<h3 class="top">Location Details</h3>
-				<p class="medium">This is the address your clients can use to log in to their account. You may want to use your company name but can only enter letters (a-z) and numbers (0-9) with no spaces or punctuation except '-'. You don't need to enter 'www.'</p>
-<div class="formContainer">
-	
-	<div class="clearfix">
-		<label>Parent Location</label>
-		<%= f.collection_select :parent_id, Location.all(:order => "name"), :id, :name, :include_blank => true %>
-	</div>
-</div>	
-
-<h3 class="top">Location Details</h3>
-<p class="medium">This is the address your clients can use to log in to their account. You may want to use your company name but can only enter letters (a-z) and numbers (0-9) with no spaces or punctuation except '-'. You don't need to enter 'www.'</p>							
+<h3 class="top">Location Name</h3>
+<p class="medium">This name will be used throughout the site describe the location. Keep it short and concise, for example "Living Room Shelf" or "2009 Glastonbury Photos"</p>							
 
 <div class="formContainer">
 
@@ -21,11 +10,56 @@
 		<%= f.label :name %>
 		<%= f.text_field :name %>
 	</div>
-	
+
 </div>
-	<a onclick="submitForm('#editAccountForm'); return false;" href="#" class="greybutton"><span><img height="16" width="16" alt="" src="/images/site/buttons/icon-tickcase.gif">Save</span></a>
-	<div class="clearButton"></div>	
+
+<h3 class="top">Category</h3>
+		<p class="medium">What type of location is this? Define the location as a "set" if this location is to represent a series of photos for example.</p>
+<div class="formContainer">
 	
-	<% end %>
+	<div class="clearfix">
+		<label>Location Category</label>
+		<select id="location_category" name="location[category]">
+		   	<option value="1">Address</option>
+		   	<option value="2">Room</option>
+			<option value="3">Box</option>
+			<option value="4">Set</option>
+		</select>
+	</div>
+</div>
+
+<h3 class="top">Parent Location</h3>
+		<p class="medium">Choose which existing location is parent to the new location which you are creating. Leave this blank to create a top level location such as an address.</p>
+<div class="formContainer">
+	
+	<div class="clearfix">
+		<label>Parent Location</label>
+		<%= f.collection_select :parent_id, Location.all(:order => "name"), :id, :name, :include_blank => true %>
+	</div>
+</div>
+
+<h3 class="top">Short Description</h3>
+		<p class="medium">A short description of this location.</p>
+<div class="formContainer">
+	
+	<div class="clearfix">
+		<label>Description</label>
+		<%= f.text_field :short_description %>
+	</div>
+</div>
+
+<h3 class="top">Long Description</h3>
+		<p class="medium">A long description of this location, along with any information specific to this location.</p>
+<div class="formContainer">
+	
+	<div class="clearfix">
+		<label>Description</label>
+		<%= f.text_area :description, :cols => 90, :rows => 10 %>
+	</div>
+</div>	
+
+<%= submit_tag "Save changes", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+
+<% end %>
 	
 

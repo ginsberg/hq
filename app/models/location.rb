@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   acts_as_tree :order => "name"
-  attr_accessible :parent_id, :name
+  attr_accessible :parent_id, :name, :category, :description, :short_description  
   has_many :barcodes, :as => :barcodeable
   
   has_many :assets
