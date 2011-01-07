@@ -9,6 +9,8 @@ class LocationsController < ApplicationController
   
   def show
     @location = Location.find(params[:id])
+    @assets = @location.assets.paginate :all, :page => params[:page], :order => 'created_at DESC'
+    
   end
   
   def new

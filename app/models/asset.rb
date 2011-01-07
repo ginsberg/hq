@@ -1,4 +1,6 @@
 class Asset < ActiveRecord::Base
+ 
+  
   
   belongs_to :location
   has_many :barcodes, :as => :barcodeable
