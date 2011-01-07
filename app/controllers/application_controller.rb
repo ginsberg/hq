@@ -14,8 +14,11 @@ class ApplicationController < ActionController::Base
 
   def current_period
     today = Date.today
-    period = Period.find(:first, :conditions => ['start <= ? and finish >= ?', today, today])
-    @current_period = period.id
+      if period = Period.find(:first, :conditions => ['start <= ? and finish >= ?', today, today])
+        @current_period = period.id
+      else
+        @curent_period = Period.find(:first)
+      end
   end
    
 end
